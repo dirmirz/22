@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ماشین حساب ساده</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazir', sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .calculator-display {
+      font-size: 2em;
+      text-align: right;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      min-height: 50px;
+    }
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .calculator-button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.5em;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .calculator-button:hover {
+      background-color: #45a049;
+    }
+    .calculator-button:active {
+      background-color: #3e8e41;
+    }
+    .calculator-button.clear {
+      background-color: #f44336;
+    }
+    .calculator-button.clear:hover {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display" class="calculator-display"></div>
+    <div class="calculator-buttons">
+      <button class="calculator-button clear" onclick="clearDisplay()">C</button>
+      <button class="calculator-button" onclick="appendToDisplay('7')">7</button>
+      <button class="calculator-button" onclick="appendToDisplay('8')">8</button>
+      <button class="calculator-button" onclick="appendToDisplay('9')">9</button>
+      <button class="calculator-button" onclick="appendToDisplay('/')">/</button>
+
+      <button class="calculator-button" onclick="appendToDisplay('4')">4</button>
+      <button class="calculator-button" onclick="appendToDisplay('5')">5</button>
+      <button class="calculator-button" onclick="appendToDisplay('6')">6</button>
+      <button class="calculator-button" onclick="appendToDisplay('*')">*</button>
+
+      <button class="calculator-button" onclick="appendToDisplay('1')">1</button>
+      <button class="calculator-button" onclick="appendToDisplay('2')">2</button>
+      <button class="calculator-button" onclick="appendToDisplay('3')">3</button>
+      <button class="calculator-button" onclick="appendToDisplay('-')">-</button>
+
+      <button class="calculator-button" onclick="appendToDisplay('0')">0</button>
+      <button class="calculator-button" onclick="appendToDisplay('.')">.</button>
+      <button class="calculator-button" onclick="calculateResult()">=</button>
+      <button class="calculator-button" onclick="appendToDisplay('+')">+</button>
+    </div>
+  </div>
+
+  <script>
+    // تابع اضافه کردن عدد یا علامت به صفحه نمایش
+    function appendToDisplay(value) {
+      document.getElementById('display').innerText += value;
+    }
+
+    // تابع پاک کردن صفحه نمایش
+    function clearDisplay() {
+      document.getElementById('display').innerText = '';
+    }
+
+    // تابع محاسبه نتیجه
+    function calculateResult() {
+      const display = document.getElementById('display');
+      try {
+        display.innerText = eval(display.innerText);
+      } catch (e) {
+        display.innerText = 'خطا';
+      }
+    }
+  </script>
+</body>
+</html>
